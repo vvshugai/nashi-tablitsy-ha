@@ -1,5 +1,5 @@
 name: Наши таблицы
-version: "1.0.3"
+version: "1.0.4"
 slug: proxima_centauri
 description: Семейный сайт с постоянной базой на SSD и переносом с Mac
 url: https://github.com/vvshugai/proxima-centauri
@@ -9,6 +9,9 @@ arch:
 startup: application
 boot: auto
 init: false
+# Быстрые обновления: дополнение само просит Supervisor обновить себя (runtime.mjs, selfUpdate).
+hassio_api: true
+hassio_role: manager
 image: ghcr.io/vvshugai/proxima-centauri-ha
 ports:
   8080/tcp: 8080
@@ -27,6 +30,7 @@ options:
   site_url: ""
   timezone: Europe/Warsaw
   restore_archive: migration.tar.gz
+  auto_update: true
 schema:
   mode: list(migration|active)
   site_host: str
@@ -34,6 +38,7 @@ schema:
   site_url: str
   timezone: str
   restore_archive: str
+  auto_update: bool?
 backup: cold
 backup_exclude:
   - site/backups/*
