@@ -1,0 +1,39 @@
+name: Наши таблицы
+version: "1.0.2"
+slug: proxima_centauri
+description: Семейный сайт с постоянной базой на SSD и переносом с Mac
+url: https://github.com/vvshugai/proxima-centauri
+arch:
+  - aarch64
+  - amd64
+startup: application
+boot: auto
+init: false
+image: ghcr.io/vvshugai/proxima-centauri-ha
+ports:
+  8080/tcp: 8080
+  8443/tcp: 8443
+ports_description:
+  8080/tcp: Сайт по HTTP
+  8443/tcp: Сайт по HTTPS
+webui: http://[HOST]:[PORT:8080]
+watchdog: http://[HOST]:[PORT:8080]/api/health
+map:
+  - share:ro
+options:
+  mode: migration
+  site_host: homeassistant.local
+  site_ip: ""
+  site_url: ""
+  timezone: Europe/Warsaw
+  restore_archive: migration.tar.gz
+schema:
+  mode: list(migration|active)
+  site_host: str
+  site_ip: str
+  site_url: str
+  timezone: str
+  restore_archive: str
+backup: cold
+backup_exclude:
+  - site/backups/*
