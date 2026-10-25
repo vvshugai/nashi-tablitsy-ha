@@ -1,5 +1,5 @@
 name: Наши таблицы
-version: "1.0.108"
+version: "1.0.109"
 slug: proxima_centauri
 description: Семейный сайт с постоянной базой на SSD и переносом с Mac
 url: https://github.com/vvshugai/proxima-centauri
@@ -32,6 +32,9 @@ options:
   timezone: Europe/Warsaw
   restore_archive: migration.tar.gz
   auto_update: true
+  icloud_apple_id: ""
+  icloud_app_password: ""
+  icloud_calendar: Семья
 schema:
   mode: list(migration|active)
   site_host: str
@@ -40,6 +43,9 @@ schema:
   timezone: str
   restore_archive: str
   auto_update: bool?
+  icloud_apple_id: str?
+  icloud_app_password: password?
+  icloud_calendar: str?
 backup: cold
 backup_exclude:
   - site/backups/*
